@@ -11,7 +11,7 @@ public class IFtest
             System.out.println("짝수");
         }
         else{
-            System.out.println("홀수");
+            System.out.println("홀수!");
         }
     }
 }
