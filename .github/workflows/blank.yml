@@ -1,36 +1,52 @@
-# This is a basic workflow to help you get started with Actions
+import java.util.Scanner;
+// 계산식을 입력받아서 계산하는 프로그램.
+public class MyCalculator
+{
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+            System.out.print("계산식>>");
+            int num1 = scanner.nextInt();
+            String operator = scanner.next();
+            int num2 = scanner.nextInt();
+            double result = 0;
 
-name: CI
+            switch (operator) {
+                case "+":
+                    result = (double) num1 + num2;      
+                    break;
+                
+                case "-":
+                    result = (double) num1 - num2;
+                    break;
+                
+                case "*":
+                    result = (double) num1 * num2;
+                    break;
+                
+                case "/":
+                    switch (num2) {
+                        case 0:
+                            System.out.println("0으로 나눌 수 없습니다!");
+                            return;
+                    }
+                    result = (double) num1 / num2;
+                    break;
+                
+                case "%":
+                    switch (num2) {
+                        case 0:
+                            System.out.println("0으로 나눌 수 없습니다!");
+                            return;
+                    }
+                    result = (double) num1 % num2;
+                    break;
+                
+                default:
+                    System.out.println("잘못된 계산식입니다.");
+                    return;
+            }
 
-# Controls when the workflow will run
-on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
-jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
-
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+            System.out.println(num1 +" "+operator +" "+ num2 + "의 계산결과는 " + (int) result); 
+        }   
+}
