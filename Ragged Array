@@ -1,0 +1,76 @@
+/**
+ * (문제)Ragged Array를 만든 후, 각 열의 합과 평균을 계산하여 출력하는 프로그램.
+ * 
+ * @author (2022320023_이태헌) 
+ * @version (2023-04-21)
+ */
+public class MidExam
+{
+    public static void main(String[] args) {
+        int[][] raggedArray = makeArray();
+        int[][] initializedArray = initializeArray(raggedArray);
+
+       
+        int longestRowLength = findLongestRowLength(initializedArray);
+        calculateArray(initializedArray);
+    }
+
+    public static int findLongestRowLength(int[][] raggedArray) {
+        int longestRowLength = raggedArray[0].length;
+        for (int[] array : raggedArray) {
+            longestRowLength = (longestRowLength <= array.length) 
+                                   ? (array.length) : (longestRowLength);
+        }
+        return longestRowLength;
+    }
+
+    public static int[][] makeArray() {
+        int[][] raggedArray = {{77, 47, 73, 98}, {94, 92}, {28, 64, 83}, {34, 78, 91, 55}};
+        return raggedArray;
+    }
+
+    public static int[][] initializeArray(int[][] array) {
+        int[][] initializedArray = new int[array.length][];
+        for (int i = 0; i < array.length; i++) {
+            initializedArray[i] = new int[array[i].length];
+            for (int j = 0; j < array[i].length; j++) {
+                initializedArray[i][j] = array[i][j];
+            }
+        }
+        return initializedArray;
+    }
+
+    public static void printArray(int[][] array) {
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array[i].length; j++) {
+                System.out.print(array[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    public static void calculateArray(int[][] array) {
+        int[] columnSums = new int[array[0].length]; // 각 열의 합 배열
+        int[] columnSizes = new int[array[0].length]; // 각 열의 크기 배열
+
+        for (int i = 0; i < array.length; i++) {
+            int j = 0;
+            do {
+                try {
+                    columnSums[j] += array[i][j]; // 열의 합 계산
+                    columnSizes[j]++; // 열의 크기 계산
+                    j++;
+                } catch (ArrayIndexOutOfBoundsException e) {
+
+                    System.out.println("잘못된 인덱스에 접근했습니다.");
+                    break;
+                }
+            } while (j < array[i].length);
+        }
+
+        for (int i = 0; i < columnSums.length; i++) {
+            double average = (double) columnSums[i] / columnSizes[i]; // 열의 평균 계산
+            System.out.printf("%d번째 열 : 합 = %d   평균 = %.2f\n", i+1, columnSums[i], average);
+        }
+    }
+}
