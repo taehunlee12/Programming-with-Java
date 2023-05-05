@@ -1,0 +1,45 @@
+import java.util.Scanner;
+
+public class MyApp
+{
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("계산식을 입력하시오(예: >> 5 + 7) ");
+        int operand1 = scanner.nextInt();
+        String operator = scanner.next();
+        int operand2 = scanner.nextInt();
+        
+        run(operand1,operand2,operator);
+        
+    }
+
+    public static void run(int operand1, int operand2, String operator) {
+        double run = 0.0;   //계산결과를 실수형으로 출력하기 위해 사용
+        switch (operator) {
+            case "+":
+                Add add = new Add(operand1, operand2);
+                run = add.calculate();
+                break;
+            case "-":
+                Sub sub = new Sub(operand1, operand2);
+                run = sub.calculate();
+                break;
+            case "*":
+                Mul mul = new Mul(operand1, operand2);
+                run = mul.calculate();
+                break;
+            case "/":
+                switch (operand2) {
+                    case 0:
+                        System.out.println("0으로 나눌 수 없습니다.");
+                        return;
+                }
+                Div div = new Div(operand1, operand2);
+                run = div.calculate();
+                break;
+            default:
+                System.out.println("잘못된 연산자입니다.");
+        }
+        System.out.println(run);
+    }
+}
