@@ -1,0 +1,59 @@
+public class Circle
+{
+    private int radius;
+    
+
+    /**
+     * Circle1 클래스의 객체 생성자
+     */
+    public Circle(int radius)
+    {
+        // 인스턴스 변수의 초기화
+        this.radius = radius;
+        
+    }
+    public double getArea(){  //원의 면적 구하는 공식
+        return 3.14 * this.radius * this.radius;  //반지름 * 반지름 * 3.14 파이 r제곱 
+        
+    }
+    public void set(int radius){
+        this.radius = radius;
+    }
+    public int getRadius(){
+        return this.radius;
+    }
+    //public String getName(){
+        //return this.name;
+    //}
+    //public String getcolor(){
+        //return this.color;
+    //}
+    
+    
+}
+
+
+=====================================================================================================
+public class MyApp  //위의 코드로 구하고자 하는 것을 구함
+{
+    public static void main(String[] args){
+        // Circle circle1 = new Circle(10, "moon","yellow");
+        // //double result = circle1.getArea();
+        // //System.out.println(result);
+        
+        // Circle circle2 = new Circle(30,"sun","red");
+        // Circle circle3 = new Circle(50, "Pizza","Blue");
+        
+        Circle[] array = new Circle[5];
+        array[0] = new Circle(0);
+        array[1] = new Circle(1);
+        array[2] = new Circle(2);
+        array[3] = new Circle(3);
+        array[4] = new Circle(4);
+        
+        System.out.println(array[2].getArea());
+        for(int i = 0; i < array.length; i++){
+            System.out.print((int) array[i].getArea() + " ");
+        }
+    }
+}
